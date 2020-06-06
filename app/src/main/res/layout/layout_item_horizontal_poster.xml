@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+    <data>
+        <import type="com.moviesaggregator.util.UtilityKt"/>
+        <variable
+            name="content"
+            type="com.moviesaggregator.apiresponseobjects.Content" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="3dp"
+        android:layout_margin="4dp" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="115dp"
+            android:layout_height="235dp">
+
+            <ImageView
+                android:id="@+id/ivPoster"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="w,15:22"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.15"
+                app:srcCompat="@drawable/sample" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{content.title}"
+                app:layout_constraintEnd_toEndOf="@+id/ivPoster"
+                app:layout_constraintStart_toStartOf="@+id/ivPoster"
+                app:layout_constraintTop_toBottomOf="@+id/ivPoster"
+                tools:text="Movie Title Movie Ti"
+                style="@style/contentTitle"/>
+
+            <TextView
+                android:id="@+id/tvReleaseDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{UtilityKt.convertDateToTMDBStyle(content.release_date)}"
+                tools:text="Release Date"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                app:layout_constraintEnd_toEndOf="@+id/ivPoster"
+                app:layout_constraintStart_toStartOf="@+id/ivPoster"
+                style="@style/contentReleaseDate"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TMDB Explorer</string>
+
+    <string name="title_now_playing">Now Playing</string>
+    <string name="title_popular_movies">Popular Movies</string>
+
+    <!-- Error messages -->
+    <string name="error_loading_now_playing_movies">Issue loading On Now movies</string>
+    <string name="error_loading_popular_movies">Issue loading Popular movies</string>
+</resources>
