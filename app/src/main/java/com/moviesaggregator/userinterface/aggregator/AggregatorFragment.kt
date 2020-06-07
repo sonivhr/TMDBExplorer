@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.moviesaggregator.R
+import com.moviesaggregator.api.apiresponse.SearchResult
 import com.moviesaggregator.userinterface.adapters.AggregatorAdapter
 import com.moviesaggregator.api.apiresponseobjects.AggregatorSection
 import com.moviesaggregator.api.apiresponseobjects.Content
@@ -44,6 +46,7 @@ class AggregatorFragment : Fragment(), AggregatorItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         rvContentList.also {
+            it.addOnScrollListener(rvOnScrollListener)
             it.setHasFixedSize(false)
         }
 
@@ -70,20 +73,30 @@ class AggregatorFragment : Fragment(), AggregatorItemClickListener {
         })
 
         moviesAggregatorViewModel.liveDataPopularMovies.observe(viewLifecycleOwner, Observer {
-            popularMovies ->
-            val aggregatorSection = AggregatorSection(popularMovies,
-                getString(R.string.title_popular_movies), PRESENTATION_VERTICAL)
-            if (!::moviesAggregatorAdapter.isInitialized) {
-                moviesAggregatorAdapter = AggregatorAdapter(aggregatorSection, this)
-            } else {
-                moviesAggregatorAdapter.addSection(aggregatorSection)
-            }
+            popularMovies -> loadPopularMoviesToRecyclerView(popularMovies)
         })
 
         moviesAggregatorViewModel.liveDataPopularMoviesException.observe(viewLifecycleOwner, Observer {
             throwable ->
             requireActivity().showSnackBar(getString(R.string.error_loading_popular_movies))
         })
+    }
+
+    private fun loadPopularMoviesToRecyclerView(popularMovies: SearchResult) {
+
+        if (::moviesAggregatorAdapter.isInitialized &&
+            moviesAggregatorAdapter.verticalPosterAdapter != null) {
+            moviesAggregatorAdapter.verticalPosterAdapter?.addMoreResults(popularMovies.results)
+            return
+        }
+
+        val aggregatorSection = AggregatorSection(popularMovies,
+            getString(R.string.title_popular_movies), PRESENTATION_VERTICAL)
+        if (!::moviesAggregatorAdapter.isInitialized) {
+            moviesAggregatorAdapter = AggregatorAdapter(aggregatorSection, this)
+        } else {
+            moviesAggregatorAdapter.addSection(aggregatorSection)
+        }
     }
 
     private fun hideProgressBar() {
@@ -103,5 +116,14 @@ class AggregatorFragment : Fragment(), AggregatorItemClickListener {
         requireActivity().addFragmentWithBackStack(fragmentClass = ContentDetailFragment::class.java,
             args = bundle, tag = ContentDetailFragment::class.java.simpleName
         )
+    }
+
+    private val rvOnScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (!rvContentList.canScrollVertically(1)) {
+                moviesAggregatorViewModel.loadPopularMovies()
+            }
+        }
     }
 }

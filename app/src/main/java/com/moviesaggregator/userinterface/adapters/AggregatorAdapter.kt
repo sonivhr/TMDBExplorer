@@ -13,10 +13,11 @@ import kotlinx.android.synthetic.main.layout_inner_recycler_view_horizontal.view
 import kotlinx.android.synthetic.main.layout_inner_recycler_view_vertical.view.*
 
 class AggregatorAdapter(aggregatorSection: AggregatorSection,
-                        val aggregatorItemClickListener: AggregatorItemClickListener) :
+                        private val aggregatorItemClickListener: AggregatorItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val aggregatorSections = mutableListOf<AggregatorSection>()
+    val aggregatorSections = mutableListOf<AggregatorSection>()
+    var verticalPosterAdapter: VerticalPosterAdapter? = null
 
     init {
         aggregatorSections.add(aggregatorSection)
@@ -71,7 +72,7 @@ class AggregatorAdapter(aggregatorSection: AggregatorSection,
 
     private fun bindVerticalViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val aggregatorSection = aggregatorSections[position]
-        val verticalPosterAdapter = VerticalPosterAdapter(aggregatorSection, aggregatorItemClickListener)
+        verticalPosterAdapter = VerticalPosterAdapter(aggregatorSection, aggregatorItemClickListener)
         val view = holder.itemView
         view.tvVerticalSectionHeader.text = aggregatorSection.sectionHeader
         view.rvVertical.adapter = verticalPosterAdapter

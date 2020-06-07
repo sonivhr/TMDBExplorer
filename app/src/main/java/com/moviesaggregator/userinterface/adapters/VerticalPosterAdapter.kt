@@ -16,6 +16,12 @@ class VerticalPosterAdapter(private val aggregatorSection: AggregatorSection,
                             private val aggregatorItemClickListener: AggregatorItemClickListener) :
     RecyclerView.Adapter<VerticalPosterAdapter.ContentViewHolder>() {
 
+    private val contentList = mutableListOf<Content>()
+
+    init {
+        contentList.addAll(aggregatorSection.searchResult.results)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val layoutItemVerticalPosterBinding: LayoutItemVerticalPosterBinding =
@@ -24,9 +30,15 @@ class VerticalPosterAdapter(private val aggregatorSection: AggregatorSection,
     }
 
     override fun onBindViewHolder(holder: ContentViewHolder, position: Int) =
-        holder.bindViews(aggregatorSection.searchResult.results[position], position, aggregatorItemClickListener)
+        holder.bindViews(contentList[position], position, aggregatorItemClickListener)
 
-    override fun getItemCount() = aggregatorSection.searchResult.results.size
+    override fun getItemCount() = contentList.size
+
+    fun addMoreResults(contents: List<Content>) {
+        val size = contentList.size
+        contentList.addAll(contents)
+        notifyItemInserted(size)
+    }
 
     class ContentViewHolder(private val layoutItemVerticalPosterBinding: LayoutItemVerticalPosterBinding):
         RecyclerView.ViewHolder(layoutItemVerticalPosterBinding.root) {

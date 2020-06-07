@@ -8,6 +8,6 @@ class MoviesAggregatorRepository {
     fun getNowPlayingMovies(): Single<SearchResult> =
         AggregatorApplication.appComponent.moviesApiInterface().getNowPlayingMovies()
 
-    fun getPopularMovies(): Single<SearchResult> =
-        AggregatorApplication.appComponent.moviesApiInterface().getNowPopularMovies()
+    fun getPopularMovies(page: Int): Single<SearchResult> =
+        AggregatorApplication.appComponent.moviesApiInterface().getNowPopularMovies(page = page)
 }

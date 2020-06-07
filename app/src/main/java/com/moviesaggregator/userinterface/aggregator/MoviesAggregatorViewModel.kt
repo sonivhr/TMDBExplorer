@@ -17,6 +17,8 @@ class MoviesAggregatorViewModel : ViewModel() {
 
     val liveDataPopularMovies = MutableLiveData<SearchResult>()
     val liveDataPopularMoviesException = MutableLiveData<Throwable>()
+    var popularMoviesPagesLoaded = 1
+    var popularMoviesTotalPages = 2
 
     init {
         loadOnNowMovies()
@@ -39,12 +41,21 @@ class MoviesAggregatorViewModel : ViewModel() {
         )
     }
 
-    private fun loadPopularMovies() {
+    fun loadPopularMovies() {
+
+        if (popularMoviesPagesLoaded > popularMoviesTotalPages) {
+            return
+        }
+
         compositeDisposable.add(
-            moviesAggregatorRepository.getPopularMovies()
+            moviesAggregatorRepository.getPopularMovies(popularMoviesPagesLoaded)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
-                    { popularMovies -> liveDataPopularMovies.postValue(popularMovies) },
+                    { popularMovies ->
+                        popularMoviesPagesLoaded += 1
+                        popularMoviesTotalPages = popularMovies.total_pages
+                        liveDataPopularMovies.postValue(popularMovies)
+                    },
                     { throwable -> liveDataPopularMoviesException.postValue(throwable) }
                 )
         )
