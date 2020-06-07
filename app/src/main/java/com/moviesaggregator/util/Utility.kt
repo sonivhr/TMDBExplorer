@@ -30,7 +30,7 @@ fun String?.convertDateToTMDBStyle() : String {
 fun Int?.getFormattedContentRunTime(): String {
 
     if (this == null || this == 0) {
-        return "Running time is not available"
+        return EMPTY_STRING
     }
 
     val hour: Int = this / 60
