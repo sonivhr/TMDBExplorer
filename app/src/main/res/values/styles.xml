@@ -23,6 +23,13 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="contentTitleDetail">
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="contentTitleVerticalList" parent="contentTitle">
         <item name="android:layout_marginStart">15dp</item>
         <item name="android:layout_marginLeft">15dp</item>
@@ -37,6 +44,12 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <style name="contentReleaseDateDetail">
+        <item name="android:textSize">17sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
     <style name="contentShortOverviewList">
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
@@ -44,6 +57,11 @@
         <item name="android:ellipsize">end</item>
         <item name="android:textStyle">italic</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="contentOverviewDetail">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
 </resources>

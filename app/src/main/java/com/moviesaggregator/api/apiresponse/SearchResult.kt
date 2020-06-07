@@ -1,6 +1,6 @@
-package com.moviesaggregator.apiresponse
+package com.moviesaggregator.api.apiresponse
 
-import com.moviesaggregator.apiresponseobjects.Content
+import com.moviesaggregator.api.apiresponseobjects.Content
 
 class SearchResult(
     val results: List<Content>,

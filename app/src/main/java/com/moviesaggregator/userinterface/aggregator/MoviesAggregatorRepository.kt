@@ -1,7 +1,7 @@
-package com.moviesaggregator.aggregator
+package com.moviesaggregator.userinterface.aggregator
 
 import com.moviesaggregator.AggregatorApplication
-import com.moviesaggregator.apiresponse.SearchResult
+import com.moviesaggregator.api.apiresponse.SearchResult
 import io.reactivex.Single
 
 class MoviesAggregatorRepository {

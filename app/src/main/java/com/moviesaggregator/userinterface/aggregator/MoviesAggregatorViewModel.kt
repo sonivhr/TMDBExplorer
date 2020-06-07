@@ -1,8 +1,8 @@
-package com.moviesaggregator.aggregator
+package com.moviesaggregator.userinterface.aggregator
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.moviesaggregator.apiresponse.SearchResult
+import com.moviesaggregator.api.apiresponse.SearchResult
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 

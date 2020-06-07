@@ -1,4 +1,4 @@
-package com.moviesaggregator.aggregator
+package com.moviesaggregator.userinterface.aggregator
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.moviesaggregator.R
-import com.moviesaggregator.adapters.AggregatorAdapter
-import com.moviesaggregator.apiresponseobjects.AggregatorSection
-import com.moviesaggregator.apiresponseobjects.Content
-import com.moviesaggregator.apiresponseobjects.PRESENTATION_VERTICAL
-import com.moviesaggregator.eventlisteners.AggregatorItemClickListener
+import com.moviesaggregator.userinterface.adapters.AggregatorAdapter
+import com.moviesaggregator.api.apiresponseobjects.AggregatorSection
+import com.moviesaggregator.api.apiresponseobjects.Content
+import com.moviesaggregator.api.apiresponseobjects.PRESENTATION_VERTICAL
+import com.moviesaggregator.userinterface.contentdetail.ContentDetailFragment
+import com.moviesaggregator.userinterface.eventlisteners.AggregatorItemClickListener
+import com.moviesaggregator.util.ARGUMENT_EXTRA_CONTENT_ID
+import com.moviesaggregator.util.addFragmentWithBackStack
 import com.moviesaggregator.util.showSnackBar
 import kotlinx.android.synthetic.main.layout_content_listing.*
 
@@ -95,5 +98,10 @@ class AggregatorFragment : Fragment(), AggregatorItemClickListener {
     }
 
     override fun onItemClick(position: Int, content: Content) {
+        val bundle = Bundle()
+        bundle.putInt(ARGUMENT_EXTRA_CONTENT_ID, content.id)
+        requireActivity().addFragmentWithBackStack(fragmentClass = ContentDetailFragment::class.java,
+            args = bundle, tag = ContentDetailFragment::class.java.simpleName
+        )
     }
 }

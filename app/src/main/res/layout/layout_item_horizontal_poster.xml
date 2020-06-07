@@ -6,7 +6,7 @@
         <import type="com.moviesaggregator.util.UtilityKt"/>
         <variable
             name="content"
-            type="com.moviesaggregator.apiresponseobjects.Content" />
+            type="com.moviesaggregator.api.apiresponseobjects.Content" />
     </data>
 
     <androidx.cardview.widget.CardView

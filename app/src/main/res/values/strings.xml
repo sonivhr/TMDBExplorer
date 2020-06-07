@@ -7,4 +7,5 @@
     <!-- Error messages -->
     <string name="error_loading_now_playing_movies">Issue loading On Now movies</string>
     <string name="error_loading_popular_movies">Issue loading Popular movies</string>
+    <string name="error_loading_movie_detail">Issue loading movie detail</string>
 </resources>

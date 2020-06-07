@@ -1,14 +1,14 @@
-package com.moviesaggregator.adapters
+package com.moviesaggregator.userinterface.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.moviesaggregator.R
-import com.moviesaggregator.apiresponseobjects.PRESENTATION_HORIZONTAL
-import com.moviesaggregator.apiresponseobjects.PRESENTATION_VERTICAL
-import com.moviesaggregator.apiresponseobjects.AggregatorSection
-import com.moviesaggregator.eventlisteners.AggregatorItemClickListener
+import com.moviesaggregator.api.apiresponseobjects.PRESENTATION_HORIZONTAL
+import com.moviesaggregator.api.apiresponseobjects.PRESENTATION_VERTICAL
+import com.moviesaggregator.api.apiresponseobjects.AggregatorSection
+import com.moviesaggregator.userinterface.eventlisteners.AggregatorItemClickListener
 import kotlinx.android.synthetic.main.layout_inner_recycler_view_horizontal.view.*
 import kotlinx.android.synthetic.main.layout_inner_recycler_view_vertical.view.*
 
@@ -77,8 +77,7 @@ class AggregatorAdapter(aggregatorSection: AggregatorSection,
         view.rvVertical.adapter = verticalPosterAdapter
     }
 
-    class HorizontalPosterViewHolder(val view: View) : RecyclerView.ViewHolder(view) { }
+    class HorizontalPosterViewHolder(view: View) : RecyclerView.ViewHolder(view) { }
 
-    class VerticalPosterViewHolder(val view: View) : RecyclerView.ViewHolder(view) { }
-
+    class VerticalPosterViewHolder(view: View) : RecyclerView.ViewHolder(view) { }
 }

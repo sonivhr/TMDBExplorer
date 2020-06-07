@@ -1,4 +1,4 @@
-package com.moviesaggregator.adapters
+package com.moviesaggregator.userinterface.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,11 +6,11 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.moviesaggregator.R
-import com.moviesaggregator.apiresponseobjects.AggregatorSection
+import com.moviesaggregator.api.apiresponseobjects.AggregatorSection
 import com.moviesaggregator.databinding.LayoutItemVerticalPosterBinding
-import com.moviesaggregator.apiresponseobjects.Content
-import com.moviesaggregator.eventlisteners.AggregatorItemClickListener
-import com.moviesaggregator.util.loadImageWithGlide
+import com.moviesaggregator.api.apiresponseobjects.Content
+import com.moviesaggregator.userinterface.eventlisteners.AggregatorItemClickListener
+import com.moviesaggregator.util.loadPosterImageWithGlide
 
 class VerticalPosterAdapter(private val aggregatorSection: AggregatorSection,
                             private val aggregatorItemClickListener: AggregatorItemClickListener) :
@@ -36,7 +36,7 @@ class VerticalPosterAdapter(private val aggregatorSection: AggregatorSection,
         fun bindViews(content: Content, position: Int, aggregatorItemClickListener: AggregatorItemClickListener) {
             layoutItemVerticalPosterBinding.content = content
             content.poster_path?.let {
-                layoutItemVerticalPosterBinding.ivPoster.loadImageWithGlide(content.poster_path)
+                layoutItemVerticalPosterBinding.ivPoster.loadPosterImageWithGlide(content.poster_path)
             }
             cvContent.setOnClickListener {
                 aggregatorItemClickListener.onItemClick(position, content)

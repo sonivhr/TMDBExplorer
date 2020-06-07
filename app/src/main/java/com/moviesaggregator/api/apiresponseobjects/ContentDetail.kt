@@ -1,4 +1,4 @@
-package com.moviesaggregator.apiresponseobjects
+package com.moviesaggregator.api.apiresponseobjects
 
 class ContentDetail(
     val id: Int,

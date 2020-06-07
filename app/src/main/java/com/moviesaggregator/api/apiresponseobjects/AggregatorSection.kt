@@ -1,6 +1,6 @@
-package com.moviesaggregator.apiresponseobjects
+package com.moviesaggregator.api.apiresponseobjects
 
-import com.moviesaggregator.apiresponse.SearchResult
+import com.moviesaggregator.api.apiresponse.SearchResult
 
 const val PRESENTATION_HORIZONTAL = 1
 const val PRESENTATION_VERTICAL = 2

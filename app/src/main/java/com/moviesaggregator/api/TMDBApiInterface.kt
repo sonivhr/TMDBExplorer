@@ -1,7 +1,7 @@
 package com.moviesaggregator.api
 
-import com.moviesaggregator.apiresponse.SearchResult
-import com.moviesaggregator.apiresponseobjects.ContentDetail
+import com.moviesaggregator.api.apiresponse.SearchResult
+import com.moviesaggregator.api.apiresponseobjects.ContentDetail
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -24,9 +24,8 @@ interface MoviesApiInterface {
                             @Query("region") region: String = REGION,
                             @Query("page") page: Int = 1): Single<SearchResult>
 
-    @GET("{movieId}")
-    fun getContentDetails(@Path("movie_id") movieId: Int,
-                          @Query("api_key") apiKey: String = API_KEY,
-                          @Query("language") language: String = LANGUAGE
-    ): Single<ContentDetail>
+    @GET("{movie_id}")
+    fun getMovieDetails(@Path("movie_id") movieId: Int,
+                        @Query("api_key") apiKey: String = API_KEY,
+                        @Query("language") language: String = LANGUAGE): Single<ContentDetail>
 }
