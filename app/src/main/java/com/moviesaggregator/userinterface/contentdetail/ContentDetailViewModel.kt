@@ -1,16 +1,14 @@
 package com.moviesaggregator.userinterface.contentdetail
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.moviesaggregator.api.apiresponseobjects.ContentDetail
-import io.reactivex.disposables.CompositeDisposable
+import com.moviesaggregator.api.apiresponse.ContentDetail
+import com.moviesaggregator.userinterface.baseviewmodel.BaseViewModel
 import io.reactivex.schedulers.Schedulers
 
-class ContentDetailViewModel : ViewModel() {
+class ContentDetailViewModel : BaseViewModel() {
 
     var contentId: Int = 0
-    private val compositeDisposable = CompositeDisposable()
-    val contentDetailRepository = ContentDetailRepository()
+    private val contentDetailRepository = ContentDetailRepository()
 
     val contentDetailLiveData = MutableLiveData<ContentDetail>()
     val contentDetailLiveDataException = MutableLiveData<Throwable>()
@@ -28,10 +26,5 @@ class ContentDetailViewModel : ViewModel() {
                     }
                 )
         )
-    }
-
-    override fun onCleared() {
-        compositeDisposable.clear()
-        super.onCleared()
     }
 }

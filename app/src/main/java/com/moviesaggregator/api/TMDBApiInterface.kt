@@ -1,7 +1,7 @@
 package com.moviesaggregator.api
 
 import com.moviesaggregator.api.apiresponse.SearchResult
-import com.moviesaggregator.api.apiresponseobjects.ContentDetail
+import com.moviesaggregator.api.apiresponse.ContentDetail
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

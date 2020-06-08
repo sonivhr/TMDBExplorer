@@ -1,15 +1,13 @@
 package com.moviesaggregator.userinterface.aggregator
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.moviesaggregator.api.apiresponse.SearchResult
-import io.reactivex.disposables.CompositeDisposable
+import com.moviesaggregator.userinterface.baseviewmodel.BaseViewModel
 import io.reactivex.schedulers.Schedulers
 
-class MoviesAggregatorViewModel : ViewModel() {
+class MoviesAggregatorViewModel : BaseViewModel() {
 
     private val TAG = this.javaClass.simpleName
-    private val compositeDisposable = CompositeDisposable()
     private val moviesAggregatorRepository = MoviesAggregatorRepository()
 
     val liveDataNowPlayingMovies = MutableLiveData<SearchResult>()
@@ -17,8 +15,8 @@ class MoviesAggregatorViewModel : ViewModel() {
 
     val liveDataPopularMovies = MutableLiveData<SearchResult>()
     val liveDataPopularMoviesException = MutableLiveData<Throwable>()
-    var popularMoviesPagesLoaded = 1
-    var popularMoviesTotalPages = 2
+    private var popularMoviesPagesLoaded = 1
+    private var popularMoviesTotalPages = 2
 
     init {
         loadOnNowMovies()
@@ -59,10 +57,5 @@ class MoviesAggregatorViewModel : ViewModel() {
                     { throwable -> liveDataPopularMoviesException.postValue(throwable) }
                 )
         )
-    }
-
-    override fun onCleared() {
-        compositeDisposable.clear()
-        super.onCleared()
     }
 }

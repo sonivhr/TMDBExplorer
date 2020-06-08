@@ -8,7 +8,7 @@
         <import type="com.moviesaggregator.util.UtilityKt" />
         <variable
             name="contentDetail"
-            type="com.moviesaggregator.api.apiresponseobjects.ContentDetail" />
+            type="com.moviesaggregator.api.apiresponse.ContentDetail" />
 
     </data>
 
@@ -27,9 +27,9 @@
 
             <ImageView
                 android:id="@+id/ivOriginalBackDrop"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="w,26:46"
+                app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -1,7 +1,7 @@
 package com.moviesaggregator.userinterface.contentdetail
 
 import com.moviesaggregator.AggregatorApplication
-import com.moviesaggregator.api.apiresponseobjects.ContentDetail
+import com.moviesaggregator.api.apiresponse.ContentDetail
 import io.reactivex.Single
 
 

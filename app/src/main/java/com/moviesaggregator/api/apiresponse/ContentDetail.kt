@@ -1,4 +1,6 @@
-package com.moviesaggregator.api.apiresponseobjects
+package com.moviesaggregator.api.apiresponse
+
+import com.moviesaggregator.api.apiresponseobjects.Genre
 
 class ContentDetail(
     val id: Int,
